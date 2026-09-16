@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CalvoNote — Preuves du projet — Concours IA &amp; Tourisme, MINTOUL JMT 2026</title>
+<meta name="description" content="Vidéos, captures d'écran et ressources techniques du projet CalvoNote, présenté au concours national IA &amp; Tourisme du MINTOUL (JMT 2026).">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0a0b08;
+    --panel: #14160f;
+    --panel-2: #191b13;
+    --border: #262a1e;
+    --text: #f2f1ea;
+    --muted: #a2a196;
+    --green: #3bb273;
+    --green-dim: #2c8558;
+    --orange: #e2872d;
+    --max: 880px;
+    --max-wide: 1080px;
+  }
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ animation-duration:0.001ms !important; transition-duration:0.001ms !important; }
+  }
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'IBM Plex Sans', sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color:var(--green); }
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--green);
+    outline-offset:3px;
+  }
+  img, video{ max-width:100%; display:block; }
+
+  .wrap{ max-width:var(--max); margin:0 auto; padding:0 24px; }
+  .wrap-wide{ max-width:var(--max-wide); margin:0 auto; padding:0 24px; }
+
+  /* Nav */
+  nav{
+    position:sticky; top:0; z-index:20;
+    background:rgba(10,11,8,0.9);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--border);
+  }
+  .nav-inner{
+    max-width:var(--max-wide); margin:0 auto; padding:14px 24px;
+    display:flex; align-items:center; justify-content:space-between;
+    gap:16px; flex-wrap:wrap;
+  }
+  .nav-brand{
+    font-family:'Fraunces', serif; font-weight:600; font-size:1.05rem; letter-spacing:0.01em;
+    color:var(--text); text-decoration:none;
+  }
+  .nav-links{ display:flex; gap:22px; flex-wrap:wrap; }
+  .nav-links a{
+    color:var(--muted); text-decoration:none; font-size:0.92rem;
+  }
+  .nav-links a:hover{ color:var(--text); }
+
+  /* Hero */
+  header.hero{ padding:76px 0 56px; }
+  .kicker{
+    color:var(--orange); font-size:0.92rem; margin:0 0 18px;
+    font-family:'IBM Plex Sans', sans-serif; font-weight:500;
+  }
+  h1.title{
+    font-family:'Fraunces', serif; font-weight:600; font-style:normal;
+    font-size:clamp(2.6rem, 7vw, 4.2rem);
+    line-height:1.03; margin:0 0 22px; color:var(--text);
+    opacity:0; transform:translateY(14px);
+    animation:rise 0.7s ease-out 0.1s forwards;
+  }
+  .title em{
+    font-style:italic; font-weight:500; color:var(--green);
+  }
+  @keyframes rise{ to{ opacity:1; transform:translateY(0); } }
+  p.lede{
+    font-size:1.15rem; color:var(--muted); max-width:620px; margin:0 0 30px;
+  }
+  .hero-meta{
+    display:flex; gap:28px; flex-wrap:wrap; margin-top:36px;
+    border-top:1px solid var(--border); padding-top:24px;
+  }
+  .hero-meta div{ font-size:0.88rem; color:var(--muted); }
+  .hero-meta strong{ display:block; color:var(--text); font-size:0.98rem; font-weight:500; margin-bottom:2px; }
+
+  /* Sections */
+  section{ padding:64px 0; border-top:1px solid var(--border); }
+  h2.section-title{
+    font-family:'Fraunces', serif; font-weight:600; font-size:1.9rem;
+    margin:0 0 10px; color:var(--text);
+  }
+  p.section-lede{ color:var(--muted); max-width:640px; margin:0 0 40px; font-size:1.02rem; }
+
+  /* Video blocks */
+  .video-block{ margin-bottom:52px; }
+  .video-block:last-child{ margin-bottom:0; }
+  .video-frame{
+    background:#000; border:1px solid var(--border); border-radius:4px;
+    overflow:hidden; max-width:300px;
+  }
+  .video-frame video{ width:100%; display:block; }
+  .video-caption{ margin-top:16px; max-width:520px; }
+  .video-caption h3{ font-size:1.05rem; font-weight:600; margin:0 0 8px; color:var(--text); }
+  .video-caption p{ color:var(--muted); margin:0 0 12px; font-size:0.96rem; }
+  .dl-link{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:0.88rem; color:var(--green); text-decoration:none;
+    border-bottom:1px solid var(--green-dim); padding-bottom:1px;
+  }
+  .dl-link:hover{ color:var(--orange); border-color:var(--orange); }
+
+  /* Screenshot gallery */
+  .shot-grid{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
+    gap:20px;
+  }
+  figure.shot{ margin:0; }
+  figure.shot button.shot-btn{
+    all:unset; cursor:zoom-in; display:block; width:100%;
+    border:1px solid var(--border); border-radius:4px; overflow:hidden;
+  }
+  figure.shot img{ width:100%; display:block; transition:transform 0.25s ease; }
+  figure.shot button.shot-btn:hover img{ transform:scale(1.03); }
+  figcaption{
+    margin-top:10px; font-size:0.85rem; color:var(--muted);
+    display:flex; justify-content:space-between; gap:10px; align-items:baseline;
+  }
+  figcaption a{ font-size:0.82rem; white-space:nowrap; text-decoration:none; border-bottom:1px solid var(--green-dim); }
+
+  /* Lightbox */
+  .lightbox{
+    position:fixed; inset:0; background:rgba(6,7,5,0.92); z-index:50;
+    display:none; align-items:center; justify-content:center; padding:32px;
+  }
+  .lightbox.open{ display:flex; }
+  .lightbox img{ max-height:90vh; max-width:92vw; border:1px solid var(--border); }
+  .lightbox-close{
+    position:absolute; top:20px; right:28px; background:none; border:none;
+    color:var(--text); font-size:1.8rem; cursor:pointer; line-height:1;
+  }
+
+  /* Resource list */
+  .res-group{ margin-bottom:38px; }
+  .res-group:last-child{ margin-bottom:0; }
+  .res-group h3{
+    font-size:0.88rem; text-transform:none; color:var(--orange);
+    font-weight:500; margin:0 0 14px; letter-spacing:0.01em;
+  }
+  .res-row{
+    display:flex; justify-content:space-between; align-items:baseline;
+    gap:16px; padding:16px 0; border-top:1px solid var(--border);
+    flex-wrap:wrap;
+  }
+  .res-group .res-row:last-child{ }
+  .res-row-title{ font-size:1.02rem; color:var(--text); font-weight:500; }
+  .res-row-desc{ color:var(--muted); font-size:0.9rem; margin-top:3px; max-width:420px; }
+  .res-row a.res-link{
+    text-decoration:none; color:var(--green); font-size:0.92rem;
+    border-bottom:1px solid var(--green-dim); white-space:nowrap;
+  }
+  .res-row a.res-link:hover{ color:var(--orange); border-color:var(--orange); }
+
+  /* Downloads */
+  .dl-table{ border-top:1px solid var(--border); }
+  .dl-row{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:16px 0; border-bottom:1px solid var(--border); gap:16px; flex-wrap:wrap;
+  }
+  .dl-row-name{ font-size:0.98rem; color:var(--text); }
+  .dl-row-meta{ color:var(--muted); font-size:0.84rem; }
+  .dl-row a{
+    text-decoration:none; color:var(--bg); background:var(--green);
+    padding:8px 16px; border-radius:3px; font-size:0.86rem; font-weight:500;
+  }
+  .dl-row a:hover{ background:var(--orange); }
+
+  .note-box{
+    margin-top:28px; padding:18px 20px; background:var(--panel);
+    border:1px solid var(--border); border-left:3px solid var(--orange);
+    border-radius:2px; color:var(--muted); font-size:0.92rem; max-width:640px;
+  }
+  .note-box strong{ color:var(--text); }
+
+  footer{
+    padding:48px 0 60px; border-top:1px solid var(--border);
+    color:var(--muted); font-size:0.86rem;
+  }
+  footer .wrap{ display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap; }
+  footer a{ color:var(--muted); }
+  footer a:hover{ color:var(--green); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="#top">CalvoNote — Preuves</a>
+    <div class="nav-links">
+      <a href="#videos">Vidéos</a>
+      <a href="#captures">Captures d'écran</a>
+      <a href="#ressources">Ressources techniques</a>
+      <a href="#telechargements">Téléchargements</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <p class="kicker">Mintoul — concours national IA &amp; tourisme, JMT 2026</p>
+    <h1 class="title">Les preuves du<br><em>Pont Bilingue</em></h1>
+    <p class="lede">Cette page rassemble les démonstrations vidéo, les captures d'écran et les ressources techniques en ligne du projet CalvoNote, à l'attention de la commission d'évaluation du concours « L'Intelligence Artificielle dans le Tourisme ».</p>
+    <div class="hero-meta">
+      <div><strong>Projet</strong>CalvoNote — DevLab</div>
+      <div><strong>Porteur</strong>Bono Passale Franc Eugène</div>
+      <div><strong>Document de présentation</strong>joint séparément au dossier</div>
+    </div>
+  </div>
+</header>
+
+<section id="videos">
+  <div class="wrap">
+    <h2 class="section-title">Démonstrations vidéo</h2>
+    <p class="section-lede">Deux captures d'écran filmées de l'application Android CalvoNote, montrant le module « Pont Bilingue » en fonctionnement réel : transcription, traduction et synthèse vocale entre le français et le Fulfulde Adamawa.</p>
+
+    <div class="video-block">
+      <div class="video-frame">
+        <video controls preload="metadata" playsinline>
+          <source src="screen-app-calvonote.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="video-caption">
+        <h3>Démonstration 1 — Pont Bilingue (31 s)</h3>
+        <p>Saisie et lecture d'un échange en français et en Fulfulde, avec traduction et synthèse vocale de la réponse.</p>
+        <a class="dl-link" href="screen-app-calvonote.mp4" download>Télécharger la vidéo — .mp4, 9,9 Mo</a>
+      </div>
+    </div>
+
+    <div class="video-block">
+      <div class="video-frame">
+        <video controls preload="metadata" playsinline>
+          <source src="screen-app-calvonote-2.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="video-caption">
+        <h3>Démonstration 2 — Pont Bilingue (20 s)</h3>
+        <p>Second échange filmé dans l'application, illustrant le cycle transcription → traduction → lecture vocale.</p>
+        <a class="dl-link" href="screen-app-calvonote-2.mp4" download>Télécharger la vidéo — .mp4, 6,1 Mo</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="captures">
+  <div class="wrap">
+    <h2 class="section-title">Captures d'écran</h2>
+    <p class="section-lede">Trois vues de l'application mobile CalvoNote, entre la prise de notes vocale et le module Pont Bilingue. Cliquer sur une image pour l'agrandir.</p>
+
+    <div class="shot-grid">
+      <figure class="shot">
+        <button class="shot-btn" data-full="Screenshot_app1.jpg" aria-label="Agrandir la capture 1">
+          <img src="Screenshot_app1.jpg" alt="Écran Notes de CalvoNote : transcription en français, boutons de lecture FR/EN/Fulfulde et outils IA Groq.">
+        </button>
+        <figcaption><span>Écran Notes — transcription et lecture multilingue</span><a href="Screenshot_app1.jpg" download>télécharger</a></figcaption>
+      </figure>
+      <figure class="shot">
+        <button class="shot-btn" data-full="Screenshot_app2.jpg" aria-label="Agrandir la capture 2">
+          <img src="Screenshot_app2.jpg" alt="Écran Notes de CalvoNote : traduction en Fulfulde Adamawa affichée dans l'historique, outils IA Groq.">
+        </button>
+        <figcaption><span>Écran Notes — traduction Fulfulde et historique</span><a href="Screenshot_app2.jpg" download>télécharger</a></figcaption>
+      </figure>
+      <figure class="shot">
+        <button class="shot-btn" data-full="Screenshot_app3.jpg" aria-label="Agrandir la capture 3">
+          <img src="Screenshot_app3.jpg" alt="Écran Pont Bilingue de CalvoNote : saisie en Fulfulde, traduction en français, historique d'échange.">
+        </button>
+        <figcaption><span>Écran Pont Bilingue — échange FR ↔ Fulfulde</span><a href="Screenshot_app3.jpg" download>télécharger</a></figcaption>
+      </figure>
+    </div>
+
+    <div class="note-box">
+      <strong>Note pour l'évaluation.</strong> La troisième capture montre un message d'erreur « ZeroGPU quota exceeded » : les services de traduction et de synthèse vocale reposent actuellement sur des Hugging Face Spaces hébergés en offre gratuite, à quota limité. Voir la section Ressources techniques ci-dessous pour le détail.
+    </div>
+  </div>
+</section>
+
+<section id="ressources">
+  <div class="wrap">
+    <h2 class="section-title">Ressources techniques</h2>
+    <p class="section-lede">L'ensemble des composants en ligne du projet, accessibles et testables directement par la commission.</p>
+
+    <div class="res-group">
+      <h3>Application de traduction indépendante</h3>
+      <div class="res-row">
+        <div>
+          <div class="res-row-title">Traducteur Français ↔ Fulfulde</div>
+          <div class="res-row-desc">Site web autonome pour une consultation rapide, sans installation.</div>
+        </div>
+        <a class="res-link" href="https://fr-fuv-translator.onrender.com/" target="_blank" rel="noopener">fr-fuv-translator.onrender.com</a>
+      </div>
+    </div>
+
+    <div class="res-group">
+      <h3>Modèles et Spaces Hugging Face</h3>
+      <div class="res-row">
+        <div>
+          <div class="res-row-title">Modèle de traduction NLLB-200 fine-tuné</div>
+          <div class="res-row-desc">Fiche modèle complète : méthodologie, corpus, usage.</div>
+        </div>
+        <a class="res-link" href="https://huggingface.co/bonopassale/nllb-fra-fuv-finetuned" target="_blank" rel="noopener">nllb-fra-fuv-finetuned</a>
+      </div>
+      <div class="res-row">
+        <div>
+          <div class="res-row-title">Space — Transcription vocale Fulfulde</div>
+          <div class="res-row-desc">Reconnaissance vocale (Whisper fine-tuné) pour le Fulfulde Adamawa.</div>
+        </div>
+        <a class="res-link" href="https://huggingface.co/spaces/bonopassale/whisper-fuv-demo" target="_blank" rel="noopener">whisper-fuv-demo</a>
+      </div>
+      <div class="res-row">
+        <div>
+          <div class="res-row-title">Space — Traduction Français ↔ Fulfulde</div>
+          <div class="res-row-desc">Moteur de traduction utilisé par le Pont Bilingue.</div>
+        </div>
+        <a class="res-link" href="https://huggingface.co/spaces/bonopassale/fr-fuv-Tardigrade-Eon" target="_blank" rel="noopener">fr-fuv-Tardigrade-Eon</a>
+      </div>
+      <div class="res-row">
+        <div>
+          <div class="res-row-title">Space — Synthèse vocale Fulfulde</div>
+          <div class="res-row-desc">Lecture à voix haute des traductions (TTS).</div>
+        </div>
+        <a class="res-link" href="https://huggingface.co/spaces/bonopassale/TTS-FUV" target="_blank" rel="noopener">TTS-FUV</a>
+      </div>
+    </div>
+
+    <div class="res-group">
+      <h3>Code source</h3>
+      <div class="res-row">
+        <div>
+          <div class="res-row-title">Dépôt GitHub du porteur du projet</div>
+          <div class="res-row-desc">Ensemble des dépôts publics liés au projet (DevLab).</div>
+        </div>
+        <a class="res-link" href="https://github.com/bono-p" target="_blank" rel="noopener">github.com/bono-p</a>
+      </div>
+    </div>
+
+    <div class="note-box">
+      <strong>À propos des quotas gratuits.</strong> Les Spaces Hugging Face ci-dessus sont hébergés en offre gratuite (quotas de requêtes limités, mise en veille après inactivité). Un premier essai peut nécessiter quelques secondes de réveil du service, et le nombre de tests successifs peut être restreint durant l'évaluation.
+    </div>
+  </div>
+</section>
+
+<section id="telechargements">
+  <div class="wrap">
+    <h2 class="section-title">Téléchargements</h2>
+    <p class="section-lede">Fichiers de preuve disponibles en téléchargement direct depuis cette page.</p>
+
+    <div class="dl-table">
+      <div class="dl-row">
+        <div>
+          <div class="dl-row-name">Démonstration 1 — Pont Bilingue</div>
+          <div class="dl-row-meta">screen-app-calvonote.mp4 · 9,9 Mo</div>
+        </div>
+        <a href="screen-app-calvonote.mp4" download>Télécharger</a>
+      </div>
+      <div class="dl-row">
+        <div>
+          <div class="dl-row-name">Démonstration 2 — Pont Bilingue</div>
+          <div class="dl-row-meta">screen-app-calvonote-2.mp4 · 6,1 Mo</div>
+        </div>
+        <a href="screen-app-calvonote-2.mp4" download>Télécharger</a>
+      </div>
+      <div class="dl-row">
+        <div>
+          <div class="dl-row-name">Capture d'écran — Notes</div>
+          <div class="dl-row-meta">Screenshot_app1.jpg · 208 Ko</div>
+        </div>
+        <a href="Screenshot_app1.jpg" download>Télécharger</a>
+      </div>
+      <div class="dl-row">
+        <div>
+          <div class="dl-row-name">Capture d'écran — Notes (historique)</div>
+          <div class="dl-row-meta">Screenshot_app2.jpg · 184 Ko</div>
+        </div>
+        <a href="Screenshot_app2.jpg" download>Télécharger</a>
+      </div>
+      <div class="dl-row">
+        <div>
+          <div class="dl-row-name">Capture d'écran — Pont Bilingue</div>
+          <div class="dl-row-meta">Screenshot_app3.jpg · 188 Ko</div>
+        </div>
+        <a href="Screenshot_app3.jpg" download>Télécharger</a>
+      </div>
+    </div>
+
+    <div class="note-box">
+      <strong>Fichier d'installation (.apk).</strong> Le fichier d'installation de l'application mobile CalvoNote est fourni séparément à la commission, en pièce jointe du dossier de candidature.
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>CalvoNote — DevLab · Bono Passale Franc Eugène<br><a href="https://github.com/bono-p" target="_blank" rel="noopener">github.com/bono-p</a></div>
+    <div>Concours « L'Intelligence Artificielle dans le Tourisme »<br>MINTOUL — Journée Mondiale du Tourisme, 23–27 sept. 2026</div>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Fermer">&times;</button>
+  <img id="lightboxImg" src="" alt="">
+</div>
+
+<script>
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  document.querySelectorAll('.shot-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      lightboxImg.src = btn.dataset.full;
+      lightboxImg.alt = btn.querySelector('img').alt;
+      lightbox.classList.add('open');
+    });
+  });
+  function closeLightbox(){ lightbox.classList.remove('open'); lightboxImg.src=''; }
+  document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', (e) => { if(e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeLightbox(); });
+</script>
+
+</body>
+</html>
